@@ -35,7 +35,7 @@ class App extends Component {
             wineDataLoaded={this.state.wineDataLoaded}
           />
         ) : (
-          <p> ITS LODING, JUST GIVE ME A MINUTE </p>
+          <p> Loading </p>
         )}
       </div>
     );
