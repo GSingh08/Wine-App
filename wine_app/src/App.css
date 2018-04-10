@@ -3,3 +3,11 @@
   width: 300px;
   float: left;
 }
+
+.wine-info {
+  float: right;
+}
+
+.description {
+  width: 500px;
+}

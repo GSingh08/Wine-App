@@ -1,13 +1,16 @@
 import React from "react";
-import WineDetailItem from "../WineDetailItem";
+import WineNameDisplay from "../WineNameDisplay";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 const WineList = props => {
   let wineItems = props.allWine.map(wine => (
-    <WineDetailItem allWine={wine} key={wine.id} />
+    <Link to={`/wine/${wine.id}`}>
+      <WineNameDisplay allWine={wine} key={wine.id} />{" "}
+    </Link>
   ));
   return (
     <div>
-      <h1 className="section-title">Wines</h1>
+      <h3 className="section-title">All Wines</h3>
 
       <div onscroll="myFunction()">{wineItems}</div>
     </div>

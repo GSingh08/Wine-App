@@ -4,6 +4,7 @@ import logo from "./logo.svg";
 import "./App.css";
 import WineList from "./WineList";
 import Header from "./Header";
+import WineInfo from "./WineInfo";
 
 class App extends Component {
   constructor(props) {
@@ -18,7 +19,7 @@ class App extends Component {
     // this.fetchById = this.fetchById.bind(this);
   }
   componentDidMount() {
-    this.fetchWines(), this.fetchById();
+    this.fetchWines();
   }
 
   fetchWines() {
@@ -32,32 +33,26 @@ class App extends Component {
       });
   }
 
-  fetchById() {
-    fetch("http://localhost:4567/api/wines/:id")
-      .then(response => response.json())
-      .then(response => {
-        this.setState({
-          wine: response,
-          singleWineDataLoaded: true
-        });
-      });
-  }
-
   render() {
     return (
-      <div>
-        <Header />
-        <div className="wineList">
-          {this.state.wineDataLoaded ? (
-            <WineList
-              allWine={this.state.allWine}
-              wineDataLoaded={this.state.wineDataLoaded}
-            />
-          ) : (
-            <p> Loading </p>
-          )}
+      <Router>
+        <div>
+          <div>
+            <div className="wineList">
+              {this.state.wineDataLoaded ? (
+                <WineList
+                  allWine={this.state.allWine}
+                  wineDataLoaded={this.state.wineDataLoaded}
+                />
+              ) : (
+                <p> Loading </p>
+              )}
+              <Link to="/wine/new">Add new wine</Link>
+            </div>
+            <Route exact path="/wine/:id" component={WineInfo} />
+          </div>
         </div>
-      </div>
+      </Router>
     );
   }
 }
